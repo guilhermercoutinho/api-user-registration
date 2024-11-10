@@ -37,8 +37,9 @@ const userController = {
 
   async updateUser(req, res) {
     const { id } = req.params;
+    const data = req.body;
 
-    const { error } = schema.validate(req.body);
+    const { error } = createUserSchema.validate(data);
 
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
